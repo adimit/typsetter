@@ -14,13 +14,17 @@ RUN apt-get update\
  && apt-get autoremove -y\
  && rm -rf /var/apt/lists/*
 
-COPY emacs/*.el /etc/emacs25/site-start.d/
 COPY entrypoint.sh /bin
 RUN chmod +x /bin/entrypoint.sh
-
 RUN useradd -ms /bin/bash typesetter
 USER typesetter
 VOLUME /src
-
 WORKDIR /src
+
+RUN emacs --batch --eval "(progn (package-initialize)\
+ (add-to-list 'package-archives '(\"melpa\" . \"http://melpa.org/packages/\") t)\
+ (package-refresh-contents)\
+ (package-install 'org-ref))"
+COPY emacs/*.el /etc/emacs25/site-start.d/
+
 ENTRYPOINT ["/bin/entrypoint.sh"]
