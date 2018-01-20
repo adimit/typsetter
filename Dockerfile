@@ -1,6 +1,6 @@
 FROM debian:testing
 MAINTAINER Aleksandar Dimitrov <aleks.dimitrov@gmail.com>
-ENV PACKAGES="emacs25-nox org-mode texlive texlive-xetex texlive-latex-extra texlive-bibtex-extra tex-gyre texlive-pictures texlive-plain-generic biber pandoc python3-pygments"
+ENV PACKAGES="emacs25-nox org-mode texlive texlive-xetex texlive-latex-extra texlive-bibtex-extra tex-gyre texlive-pictures texlive-plain-generic biber pandoc python-pygments"
 ENV BUILD_DEPENDENCIES="curl unzip"
 
 RUN apt-get update\
